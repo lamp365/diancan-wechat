@@ -1,16 +1,32 @@
 import {
   Token
 } from 'pages/utils/token.js';
-
+var app = getApp();
 App({
 
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function() {
+    
+   
     var token = new Token();
+    var that = this;
+    token._getSystemInfo(res=>{
+      wx.setNavigationBarTitle({
+        title: res.data.title
+      })
+      that.globalData.web_title = res.data.title;
+    });
     token.verify();
+    
+
   },
+ 
+    //使用全局变量解决页面的传值问题  
+    globalData: {
+     web_title:'' //用户地址-在使用    
+    },
 
   /**
    * 当小程序启动，或从后台进入前台显示，会触发 onShow

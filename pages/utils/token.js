@@ -2,6 +2,7 @@ import {
   Config
 } from 'config.js';
 
+
 class Token {
   constructor() {
     this.verifyUrl = Config.restUrl + 'token/verify';
@@ -59,8 +60,19 @@ class Token {
       }
     });
   }
+
+  _getSystemInfo(callback){
+    var that = this;
+    wx.request({
+      url: Config.getSystem,
+      success: function(res) {
+        callback(res);
+      }
+    })
+  }
+
 }
 
-export {
-  Token
-};
+
+
+export {Token};

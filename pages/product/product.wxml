@@ -11,7 +11,7 @@
     </view>
 
     <view class='detail-topic-img'>
-      <image src='{{product.main_img_url}}' mode='aspectFit'></image>
+      <image src='{{product.main_img_url}}' mode='aspectFill'></image>
     </view>
 
     <view class='cart-box'>
@@ -57,6 +57,7 @@
     <view class='product-detail-box'>
 
       <view class='product-detail-imgs' hidden='{{currentTabsIndex!=0}}'>
+      	<rich-text class="r_text" nodes="<div style='word-break: break-all;display: inline-block;'>{{product.summary}}</div>"></rich-text> 
         <block wx:for="{{product.imgs}}">
           <image src='{{item.img_url.url}}' mode='aspectFill'></image>
         </block>

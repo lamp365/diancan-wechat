@@ -37,7 +37,8 @@
 
 /*订单三种状态*/
 .order-status-txt{
-    font-size: 24rpx;
+    font-size: 30rpx;
+    font-weight: bolder;
 }
 .order-status-txt.unpay{
     color: #B42F2D;

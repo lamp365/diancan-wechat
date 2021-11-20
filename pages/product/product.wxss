@@ -6,13 +6,12 @@
   background-color: #fff;
 }
 .detail-topic-img{
-  width: 600rpx;
+  width: 100%;
   display: flex;
   justify-content: center;
   
   
   overflow: hidden;
-  border-radius: 50%;
   
 }
 .detail-topic-img image{
@@ -27,8 +26,8 @@
   width: 80rpx;
 }
 .fiexd-cart image{
-  height: 64rpx;
-  width: 64rpx;
+  height: 76rpx;
+  width: 76rpx;
 }
 .fiexd-cart view{
   font-size: 24rpx;
@@ -162,6 +161,7 @@
 }
 .basic-info-box .name{
   font-size: 40rpx;
+  font-weight: bolder;
 }
 .basic-info-box .price{
   font-size: 38rpx;
@@ -194,7 +194,9 @@
   border-bottom: 2px solid rgba(171,149,109,.8);
 }
 .product-detail-box{
-  padding-bottom: 20rpx;
+  padding-bottom: 60rpx;
+  padding-right: 28rpx;
+  padding-left: 28rpx;
 }
 .product-detail-imgs image{
   width: 100%;

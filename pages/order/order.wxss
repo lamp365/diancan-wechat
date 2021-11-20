@@ -33,7 +33,7 @@
    margin-bottom:15rpx ;
 }
 .order-time-no view .key{
-    color: #999999;
+    color: #555555;
 }.order-time-no view .val{
     margin-left: 10rpx;
     color: #333;
@@ -80,7 +80,7 @@
     color:#333;
 }
 .contact-box .detail{
-    color:#999999;
+    color:#555555;
 }
 
 

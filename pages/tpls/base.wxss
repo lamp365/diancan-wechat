@@ -24,10 +24,10 @@
 .footer-account-box{
     position: fixed;
     bottom: 0;
-    height: 92rpx;
+    height: 118rpx;
     width: 100%;
     display: flex;
-    border-top: 1rpx solid #ccc;
+    border-top: 1rpx solid #eeeeee;
     border-bottom: 1rpx solid #ccc;
 }
 

@@ -95,11 +95,11 @@
     <!--因为屏蔽了支付系统，故第一次支付会不成功，但会生成订单，第二次付款支付不了-->
     <!--订单状态为未付款，从购物车来的请求，第一次支付，满足这些才可以第一次生成订单     -->
     <view wx:if="{{orderStatus<=1 && fromUrl == 'cart' && firstPayStatus ==1 }}" class="pay {{firstPayStatus !=1 ?'disabled':''}}" ontap="pay">
-      去付款
+      立即付款
     </view>
     
     <view wx:else class="pay {{true?'disabled':''}}">
-      去付款
+      立即付款
     </view>
   </view>
 </view>

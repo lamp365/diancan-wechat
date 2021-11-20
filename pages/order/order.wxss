@@ -125,19 +125,27 @@
 .total-account{
     flex: 1;
     color:#ff0000;
-    padding-left: 20rpx;
+    padding-right: 20rpx;
+    font-weight: bold;
+    flex-direction: row-reverse;
+    font-size: 30rpx;
 }
 .pay{
-    flex-basis: 240rpx;
-    background-color: #f68e35;
+    flex-basis: 280rpx;
+    background-color: #ffD306;
     color: #fff;
     justify-content: center;
+    font-weight: bolder;
+    font-size: 32rpx;
+    margin-right: 16rpx;
+    border-radius: 80rpx;
+    margin-top: 16rpx;
+    height: 86rpx;
 }
 .pay:active{
     background: #84704d;
 }
 .pay.disabled{
-    background: rgba(171,149,109,0.6);
     pointer-events: auto;
 }
 

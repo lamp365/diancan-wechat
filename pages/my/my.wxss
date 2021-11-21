@@ -6,23 +6,38 @@
 .my-header{
     background-color: #f68e35;
     color: #fff;
-    display: flex;
     align-items: center;
     padding: 30rpx;
     font-size: 28rpx;
+    display: flex;
 }
 .open-data-avatarUrl{
     height: 100rpx;
     width: 100rpx;
-    display: block;
+    display: flex;
     overflow: hidden;
     border-radius: 50%;
 }
 
 .nickName{
   margin-left: 20rpx;
+  display: flex;
 }
 
+.my_address{
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}
+.show_address{
+    background: #B42F2D;
+    width: 170rpx;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28rpx;
+}
 
 .my-header image{
     height: 100rpx;
@@ -32,9 +47,7 @@
 .my-header text{
     margin-left: 20rpx;
 }
-.my-address{
-    background-color: #fff;
-}
+
 
 .section{
     border-bottom:1rpx solid #E9E9E9;
@@ -80,7 +93,7 @@
 }
 
 .my-order{
-    margin-top: 10px;
+    margin-top: 2px;
     /*border-bottom: 1rpx solid #EDEDED;*/
 }
 
@@ -88,10 +101,19 @@
     padding: 25rpx 0;
     color: #999999;
     text-align: center;
-    border-bottom: 1rpx solid #EDEDED;
-    font-size: 28rpx;
+    /* border-bottom: 1rpx solid #EDEDED; */
+    font-size: 30rpx;
     background-color: #fff;
-    position: relative;
+    font-weight: bold;
+    display: flex;
+    padding: 0rpx 35rpx;
+    justify-content: space-between;
+    align-items: center;
+}
+.item-title view{
+    display: flex;
+    height: 80rpx;
+    align-items: center;
 }
 .item-title image{
     position: absolute;
@@ -100,7 +122,14 @@
     width: 48rpx;
     right: 10rpx;
 }
-
+.item-title .active{
+    color: #000000;
+    border-bottom:2px solid  #B42F2D;
+}
+.item-main{
+    margin-top: 4rpx;
+    background: #fff;
+}
 .order-item{
     margin-bottom: 15rpx;
     color: #777777;
@@ -165,7 +194,7 @@
     height: 60rpx;
     margin-right: 30rpx;
     background-color:#B42F2D;
-    border-radius: 4rpx;
+    border-radius: 42rpx;
     color: #fff;
     text-align: center;
     line-height: 60rpx;
@@ -175,4 +204,35 @@
 }
 .no-data{
     background: #fff;
+}
+.no_data{
+    text-align: center;
+   
+
+}
+.no_data image{
+    width: 300rpx;
+    height: 300rpx;
+    margin-top: 180rpx;
+}
+.order_act{
+    display: flex;
+    align-items: center;
+}
+.cancle{
+    width: 170rpx;
+    height: 60rpx;
+    margin-right: 30rpx;
+    border-radius: 42rpx;
+    border: 1px solid #ededed;
+    text-align: center;
+    line-height: 60rpx;
+}
+.to_bottom{
+    height: 80rpx;
+   margin-bottom: 20rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #6d6d6d;
 }

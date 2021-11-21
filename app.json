@@ -1,12 +1,16 @@
 {
   "pages": [
+
     "pages/food/food",
     "pages/category/category",
     "pages/product/product",
     "pages/cart/cart",
     "pages/my/my",
     "pages/order/order",
-    "pages/pay-result/pay-result"
+    "pages/pay-result/pay-result",
+    "pages/addressList/adressList",
+    "pages/myAddress/myAddress",
+    "pages/address/address"
   ],
   "window": {
     "navigationBarTextStyle": "white",

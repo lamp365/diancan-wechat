@@ -127,10 +127,10 @@
     color:#ff0000;
     padding-right: 20rpx;
     font-weight: bold;
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; 
     font-size: 30rpx;
 }
-.pay{
+.pay{ 
     flex-basis: 280rpx;
     background-color: #ffD306;
     color: #fff;

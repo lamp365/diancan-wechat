@@ -229,7 +229,7 @@ Page({
         that.data.id = id;
         that.data.fromCartFlag = false;
         //开始支付
-        //that._execPay(id);
+        // that._execPay(id);
         that.showPay(id);
       } else {
         that._orderFail(data);

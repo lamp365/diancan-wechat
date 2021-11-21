@@ -15,7 +15,9 @@ Page({
     categoryTypeArr: {},
     categoryProducts: {},
     currentMenuIndex: 0,
-    loadedData: {}
+    loadedData: {},
+    bannerArr:[],
+    scrollTopNum:0
   },
 
   /**
@@ -23,8 +25,17 @@ Page({
    */
   onLoad: function(options) {
     this._loadData();
+    this.getBanner();
   },
-
+  getBanner:function(){
+    var bannerArr = [
+      {'image':"../../imgs/baner1.jpg"},
+      {'image':"../../imgs/baner2.jpg"},
+      {'image':"../../imgs/baner2.jpg"},
+      {'image':"../../imgs/baner2.jpg"}
+    ];
+    this.setData({bannerArr:bannerArr})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -101,8 +112,12 @@ Page({
         'categoryProducts': this.data.loadedData[index]
       });
     }
+  },
 
-
-
-  }
+  onPageScroll: function (e) {//监听页面滚动
+    console.log(e);
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 })

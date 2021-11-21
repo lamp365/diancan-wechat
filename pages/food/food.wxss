@@ -1,12 +1,93 @@
 @import "../tpls/category/category-tpl.wxss";
 
+.index-top-image{
+    height: 350rpx;
+    width: 100%;
+  
+
+}
+.mall-b-swiper {
+    width: 100%;
+    height: 100%;
+    padding: 0rpx;
+    margin: 0rpx;
+}
+.item-image{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+.top_nav{
+    height: 48rpx;
+    display: flex;
+    font-size: 32rpx;
+    padding: 34rpx 20rpx 24rpx 20rpx;
+}
+.top_nav .active{
+    font-weight: bolder;
+    border-bottom: 8rpx solid red;
+}
+.top_nav view{
+    height: 30rpx;
+    line-height: 48rpx;
+    margin-right: 60rpx;
+    padding-bottom: 24rpx;
+}
+.tuijian_box{
+    padding: 20rpx;
+    margin-top: 16rpx;
+}
+.tuijian_title{
+    font-size: 30rpx;
+    font-weight: bold;
+    height: 50rpx;
+}
+.tuiujian_piclist{
+    display: flex;
+    width: 100%;
+    height: 360rpx;
+}
+.onepic-item{
+    white-space: nowrap;
+}
+.the_item{
+    width: 200rpx;
+    height: 260rpx;
+    display: inline-block;
+    margin-right: 34rpx;  
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.the_item image{
+    width: 100%;
+    height: 200rpx;
+    border-radius: 14rpx;
+}
+.info-item{
+    font-size: 28rpx;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.topnavFixed{
+    position:fixed;
+    top:0rpx;
+    z-index: 101;
+}
+.topnavAbsolute{
+    position:absolute;
+    top:700rpx;
+    z-index: 100;
+}
+
+
 .category-container{
     /*min-height: 100vh;*/
 }
 .category-box{
     display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 .left-box{
     flex: 0 0 150rpx;

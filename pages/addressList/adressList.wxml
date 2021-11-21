@@ -1,16 +1,16 @@
 <!--pages/addressList/adressList.wxml-->
-<view class="no_address" wx:if="{{addressInfo.length == 0}}">
+<view class="no_address" wx:if="{{isNoData}}">
 <image src="../../imgs/icon/address.jpg" alt=""></image>
 <view class="no_address_text">暂无可用地址</view>
 </view>
 
-<view class="showInfo">
+<view class="showInfo" wx:if="{{!isNoData}}">
   <view>{{addressInfo.name}} {{addressInfo.mobile}}</view>
   <view>{{addressInfo.province}}{{addressInfo.city}}{{addressInfo.country}}{{addressInfo.detail}}</view>
   <view class="action">
     <view class="default">设为默认</view>
     <view class="action_right">
-      <view class="del">删除</view> 
+      <view class="del" bindtap="bindDel" data-id="{{addressInfo.id}}">删除</view> 
       <view class="edit" data-id="{{addressInfo.id}}" bindtap="bindEdit">编辑</view>
     
     </view>

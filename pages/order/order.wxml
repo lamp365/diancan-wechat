@@ -20,9 +20,9 @@
   </view>
 
   <!--地址-->
-  <view class="order-address-info {{orderStatus!=0?'disabled':''}}" ontap="editAddress" wx:if="{{selectAddressStatus == 1}}">
-    <block wx:if="{{addressInfo}}">
-      <view class="contact-box">
+  <view class="order-address-info {{orderStatus!=0?'disabled':''}}"  wx:if="{{selectAddressStatus == 1}}">
+    <block wx:if="{{!isNoAddressData}}">
+      <view class="contact-box" ontap="editAddress">
         <view>
           <view class="contact">
             <view>
@@ -42,7 +42,7 @@
       </view>
     </block>
     <block wx:else>
-      <view class="add-new-address">
+      <view class="add-new-address"  ontap="editAddress">
         <text class="icon">+</text>
         <text>添加地址</text>
       </view>

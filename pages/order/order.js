@@ -32,6 +32,9 @@ Page({
     firstPayStatus:1,
     //来源是哪里
     fromUrl: null,
+
+    addressInfo:[],
+    isNoAddressData:true
   },
 
   /**
@@ -50,10 +53,24 @@ Page({
       this._fromOrder(id);
     }
   },
-  onShow: function() {
+  onShow: function(option) {
     if(this.data.id){
       this._fromOrder(this.data.id);
     }
+    //显示收货地址
+    var that = this;
+    address.getAddress((res) => {
+      var isNoAddressData = true;
+      console.log(res);
+      if(Object.keys(res).length>0){
+        isNoAddressData = false;
+      }
+      that.setData({
+        addressInfo: res,
+        isNoAddressData:isNoAddressData
+      });
+  
+    });
   },
 
   _fromCart(account) {
@@ -65,11 +82,6 @@ Page({
       productsArr: productsArr,
       account: account,
       orderStatus: 0
-    });
-
-    //显示收货地址
-    address.getAddress((res) => {
-      this._bindAddressInfo(res);
     });
   },
 
@@ -100,24 +112,31 @@ Page({
   },
 
   editAddress: function(event) {
-    var that = this;
-    wx.chooseAddress({
-      success: function(res) {
-        var addressInfo = {
-          name: res.userName,
-          mobile: res.telNumber,
-          totalDetail: address.setAddressInfo(res)
-        }
-        that._bindAddressInfo(addressInfo);
+    // var that = this;
+    // wx.chooseAddress({
+    //   success: function(res) {
+    //     var addressInfo = {
+    //       name: res.userName,
+    //       mobile: res.telNumber,
+    //       totalDetail: address.setAddressInfo(res)
+    //     }
+    //     that._bindAddressInfo(addressInfo);
 
-        //保存地址（保存到数据库中）
-        address.submitAddress(res, (flag) => {
-          if (!flag) {
-            that.showTips('操作提示', '地址信息更新失败', true);
-          }
-        });
-      }
-    })
+    //     //保存地址（保存到数据库中）
+    //     address.submitAddress(res, (flag) => {
+    //       if (!flag) {
+    //         that.showTips('操作提示', '地址信息更新失败', true);
+    //       }
+    //     });
+    //   }
+    // })
+    var id = 0;
+    if(this.data.addressInfo.length >0 )
+       id = this.data.addressInfo.id;
+
+    wx.navigateTo({
+      url: '../myAddress/myAddress?id='+id,
+    }) 
   },
 
   testPay:function(event){

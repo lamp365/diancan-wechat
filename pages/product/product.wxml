@@ -17,21 +17,23 @@
     <view class='cart-box'>
 
       <view class='product-counts'>
-        <picker class="{{product.stock==0?'disabled':''}}" range='{{countsArray}}' value='1' bindchange='bindPickerChange'>
+       
           <view>
             <text class='counts-tips'>数量</text>
+            <image class='counts-icon' src='../../imgs/icon/jian.png' bindtap="jianCount" data-count="{{productCount}}"></image>
             <text class='counts-data'>{{productCount}}</text>
-            <image class='counts-icon' src='../../imgs/icon/arrow@down.png'></image>
+            <image class='counts-icon' src='../../imgs/icon/add.png' bindtap="addCount" data-count="{{productCount}}"></image>
           </view>
-        </picker>
+      
       </view>
 
       <view class='middle-border'></view>
 
       <view class="add-cart-btn {{product.stock==0?'disabled':''}}" bindtap='onAddingToCartTap'>
-        <text>加入购物车</text>
-        <image class='cart-icon' src='../../imgs/icon/cart.png'></image>
-      </view>
+        <text class="show_price_unit">￥</text>
+       <text class="show_price">{{totalPrice}}</text> 
+        <text>加购物车</text>
+      </view> 
 
     </view>
 
@@ -47,7 +49,7 @@
   <view class='detail-bottom-box'>
 
     <view class="tabs-box">
-      <block wx:for="{{tabs_text}}">
+      <block wx:for="{{tabs_text}}" wx:key="index">
         <view class="tabs-item {{currentTabsIndex==index?'selected':''}}" bindtap='onTabsItemTap' data-index='{{index}}'>
           {{item}}
         </view>
@@ -58,13 +60,13 @@
 
       <view class='product-detail-imgs' hidden='{{currentTabsIndex!=0}}'>
       	<rich-text class="r_text" nodes="<div style='word-break: break-all;display: inline-block;'>{{product.summary}}</div>"></rich-text> 
-        <block wx:for="{{product.imgs}}">
+        <block wx:for="{{product.imgs}}" wx:key="index">
           <image src='{{item.img_url.url}}' mode='aspectFill'></image>
         </block>
       </view>
 
       <view class='product-detail-properties' hidden='{{currentTabsIndex!=1}}'>
-        <block wx:for="{{product.properties}}">
+        <block wx:for="{{product.properties}}" wx:key="index">
           <view class='properties-item'>
             <view class='properties-name'>{{item.name}}</view>
             <view class='properties-detail'>{{item.detail}}</view>

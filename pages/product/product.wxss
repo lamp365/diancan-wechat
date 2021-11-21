@@ -58,11 +58,11 @@
 
 /*选择数量和添加到购物车*/
 .cart-box{
-  width: 660rpx;
-  height: 100rpx;
+  width: 680rpx;
+  height: 130rpx;
   margin: 30rpx auto;
   border-radius: 100rpx;
-  background-color: #AB956D;
+  background-color: #f68e35;
   color: #fff;
   display: flex;
   align-items: center;
@@ -71,12 +71,16 @@
 .product-counts,.add-cart-btn{
   height: 100%;
   display: flex;
-  font-size: 24rpx;
+  font-size: 34rpx;
   align-items: center;
   justify-content: center;
 }
 .product-counts{
   width: 50%;
+}
+.product-counts>view{
+  align-items: center;
+  display: flex;
 }
 .add-cart-btn{
   position: relative;
@@ -127,15 +131,24 @@
   width: 100%;
   height: 100rpx;
 }
-.counts-tips,.counts-data,.counts-icon{
+.counts-tips,.counts-data{
   margin: 0 20rpx;
 }
 .counts-data{
-  font-size: 28rpx;
+  font-size: 30rpx;
 }
-.counts-icon{
-  height: 48rpx;
-  width: 48rpx;
+.counts-icon{ 
+  height: 34rpx;
+  width: 34rpx;
+  margin: 0 16rpx;
+}
+.show_price_unit{
+  margin-top: 20rpx;
+}
+.show_price{
+  font-size: 58rpx;
+  font-weight: bolder;
+  margin-right: 18rpx;
 }
 
 .add-cart-btn .cart-icon{
@@ -170,6 +183,9 @@
 /*商品详情*/
 .detail-bottom-box{
   margin-top: 30rpx;
+}
+.r_text{
+  font-size: 30rpx;
 }
 .tabs-box{
   height: 90rpx;

@@ -261,9 +261,10 @@ Page({
       data: formData,
       sCallback: function(res) {
         console.log(res);
+        wx.navigateBack({ delta: 1}) //返回上一级页面
       },
       eCallback(res) {
-        console.log(res);
+       BaseObj._showMessageToast(res.msg);
       }
     };
     BaseObj.request(param);

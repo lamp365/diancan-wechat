@@ -52,7 +52,7 @@
       </view>
 
       <view class="all-price-submit {{account == 0 ? 'disabled':''}}" bindtap='submitOrder'>
-        <view class='accounts-btn'>下单</view>
+        <view class='accounts-btn'>立即下单</view>
 
         <view class='price-text'>￥{{account}}</view>
 
@@ -66,7 +66,7 @@
     </view>
 
   </block>
-  <view wx:else class='no-data'>
-    你还没有添加任何商品
+  <view wx:else class='no_data'>
+    <image src="../../imgs/icon/none.jpg"></image>
   </view>
-</view>
+</view> 

@@ -2,41 +2,29 @@
   <view class="my-header">
     <open-data type="userAvatarUrl" class="open-data-avatarUrl"></open-data>
     <open-data type="userNickName" lang="zh_CN" class="nickName"></open-data>
+
     <!--
     <image src="{{userInfo.avatarUrl}}"></image>
     <text class="name">{{userInfo.nickName}}</text>
     -->
+    <view class="my_address">
+      <view class="show_address"  bindtap="addressList">管理地址</view>
+    </view>
   </view>
-  <!--地址管理-->
-  <view class="my-address">
-    <block wx:if="{{addressInfo}}">
-      <view class="item-title" ontap="editAddress">
-        地址管理
-        <image src="../../imgs/icon/arrow@right.png"></image>
-      </view>
-      <view class="item-main">
-        <view class="section">
-          <input disabled name="name" placeholder="姓名" value="{{addressInfo.name}}" />
-        </view>
-        <view class="section">
-          <input disabled type="number" name="mobile" placeholder="手机号码" value="{{addressInfo.mobile}}" />
-        </view>
-        <view class="section">
-          <input disabled name="detail" placeholder="收货地址" value="{{addressInfo.totalDetail}}" />
-        </view>
-      </view>
-    </block>
-    <block wx:else>
-      <view class="add-new-address" ontap="editAddress">
-        <text class="icon">+</text>
-        <text>添加地址</text>
-      </view>
-    </block>
-  </view>
+  
 
   <view class="my-order">
-    <view class="item-title">我的订单</view>
+    <view class="item-title">
+      <view class="{{status ==0 ?'active':''}}" bindtap="getOrderItem" data-status="0">所有订单</view> 
+      <view class="{{status ==1 ?'active':''}}"  bindtap="getOrderItem" data-status="1">待支付</view> 
+      <view class="{{status ==2 ?'active':''}}"  bindtap="getOrderItem" data-status="2">已支付</view>
+      <view class="{{status >2 ?'active':''}}"  bindtap="getOrderItem" data-status="3">已完成</view>
+    </view>
     <view class="item-main">
+    <!-- 没有数据时候 -->
+     <view class="no_data" wx:if="{{orderArr.length == 0}}">
+      <image src="../../imgs/icon/none.jpg"></image>
+     </view>
       <block wx:for="{{orderArr}}">
         <view class="order-item">
           <view class="order-header" ontap="showOrderDetailInfo" data-id="{{item.id}}">
@@ -59,10 +47,16 @@
           </view>
           <view class="order-bottom" wx:if="{{item.status==1}}">
             <text>实付:￥{{item.total_price}}</text>
-            <view class="pay" ontap="rePay" data-id="{{item.id}}" data-index="{{index}}">付款</view>
+            <view class="order_act">
+              <view class="cancle">取消</view>
+              <view class="pay" ontap="rePay" data-id="{{item.id}}" data-index="{{index}}">付款</view>
+            </view>
+            
           </view>
         </view>
       </block>
+
+      <view wx:if="{{orderArr.length>0 && isLoadedAll}}" class="to_bottom">--- 别扯了，到底啦！---</view>
     </view>
   </view>
 </view>

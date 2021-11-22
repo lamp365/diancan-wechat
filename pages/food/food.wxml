@@ -1,0 +1,64 @@
+<!--pages/category/category.wxml-->
+<import src='../tpls/category/category-tpl.wxml'></import>
+
+
+  <view class="index-top-image">
+      <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000"  indicator-active-color="#F34A51" circular="true" bindchange="">
+        <block wx:for="{{bannerArr}}" wx:key="index" >
+            <swiper-item class="banner-item" bindtap="onProductsItemTap" data-link="">
+                <image class="item-image" src="{{item.image}}" mode="scaleToFill" style="" />
+            </swiper-item>
+        </block>
+      </swiper>
+      <!--image src="../../images/index-top.jpg"></image-->
+  </view>
+
+
+  <view class="top_nav  {{scrollTop>146 ? 'topnavFixed' : ''}}">
+    <view class="active">菜品</view>
+    <view>商家</view>
+  </view>
+
+<view class="mian-box">
+  <view class="tuijian_box">
+      <view class="tuijian_title">商家推荐</view>
+      <view class="tuijian_piclist">
+        <scroll-view scroll-x style="height: 100%;" scroll-left="scrollleft">
+          <view class="onepic-item">
+            <view class="the_item" wx:for="{{bannerArr}}" wx:key="index">
+              <image src="{{item.image}}" mode="top"></image>
+              <view class="info-item">
+                title123
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+  </view>
+  <!-- end 商家推荐 -->
+  <view class="container category-container">
+    <view class='category-box'>
+
+      <view class="left-box  {{scrollTop>258 ? 'topcatFixed' : ''}}">
+        <block wx:for="{{categoryTypeArr}}" wx:key='index'>
+          <view class="menu-item {{currentMenuIndex==index?'selected':''}}" data-id='{{item.id}}' data-index='{{index}}' bindtap='changeCategory'>
+            {{item.name}}
+          </view>
+        </block>    
+      </view>  <!--左侧nav-->
+   
+      <scroll-view scroll-y="true" scroll-top='{{gotopNum}}'  style="height: {{clientHight}}px; margin-left:{{scrollTop>258 ? '150rpx' : '0rpx'}};" enable-flex="true" scroll-with-animation="true" bindscroll="bindscrollView"> 
+        <view class='right-box'>
+          <view class='foods-type-box'>
+            <template is='categorydetail' data='{{categoryInfo:categoryProducts,is_nodata:is_nodata}}'>
+            </template>
+          </view>
+        </view>
+      </scroll-view><!--右侧内容-->
+    </view>
+  </view>
+  <!-- 分类end -->
+</view>
+
+
+

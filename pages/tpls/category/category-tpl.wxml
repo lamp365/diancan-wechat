@@ -1,26 +1,22 @@
 <template name="categorydetail">
-  <view class="category-detail-box" hidden="{{!categoryInfo}}">
-
-    <view class="category-header">
-      <image src="{{categoryInfo.topImgUrl}}" mode="aspectFill"></image>
-    </view>
-
-    <view class="category-title">
-      <text>{{categoryInfo.title}}</text>
-    </view>
-
-    <view class="category-main">
-      <block wx:for="{{categoryInfo.products}}" wx:key="index">
-
-        <view class="category-goods-items {{index%3==1?'middle':''}}" data-id="{{item.id}}" bindtap="onProductsItemTap">
-          <image src="{{item.main_img_url}}" mode="aspectFill"></image>
-
+  <view class="category-detail-box">
+    <view hidden="{{!categoryInfo}}">
+      <view class="product_list"  wx:for="{{categoryInfo.products}}" wx:key="index" data-id="{{item.id}}" bindtap="onProductsItemTap">
+        <image src="{{item.main_img_url}}" class="product_img" mode='aspectFill'></image>
+        <view class="product_content">
           <view>{{item.name}}</view>
-
+          <view>销量 {{item.seller_num}}</view>
+          <view class="product_buy" catchtap="stopMaopao">
+              <view>¥{{item.price}}</view>
+              <view bindtap="addToCart" data-id="{{item.id}}" data-category_id="{{item.category_id}}"><image src="../../imgs/icon/buy.png"></image></view>
+          </view>
         </view>
-
-      </block>
+      </view>
     </view>
-
+    <view class="no_data"  wx:if="{{is_nodata}}" style="justify-content: center;display: flex;">
+      <image src="../../imgs/icon/none.jpg" style="margin-top: 160rpx;width: 240rpx;height: 240rpx;"></image>
+    </view>
   </view>
+  
+
 </template>

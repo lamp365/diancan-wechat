@@ -1,0 +1,60 @@
+/* pages/addressList/adressList.wxss */
+/**暂无地址**/
+.no_address{
+  text-align: center;
+  margin-top: 340rpx;
+}
+.no_address image{
+  width: 160rpx;
+  height: 150rpx;
+}
+.no_address_text{
+  font-size: 28rpx;
+  color: #999;
+}
+.add_address{
+  height: 90rpx;
+  width: 88%;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  color: #ffffff;
+  background-color: #B42F2D;
+  border-radius: 30rpx;
+  position: absolute;
+  bottom: 50rpx;
+  margin-left: 6%;
+  text-align: center;
+}
+
+.showInfo{
+  background: #fff;
+  padding: 25rpx 32rpx 16rpx 32rpx;
+  border-bottom: 1px solid #eee;
+}
+.showInfo>view{
+  color: #000;
+  font-size: 30rpx;
+  line-height: 52rpx;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.showInfo>view:nth-child(2){
+  color: #666;
+}
+.action{
+  display: flex;
+}
+.default{
+  color: #555;
+}
+.action_right{
+  display: flex;
+  flex: 1;
+  flex-direction:row-reverse;
+}
+.edit{
+  padding-right: 24rpx;
+}
+.del{
+  color: red;
+}

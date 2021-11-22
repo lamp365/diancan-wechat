@@ -10,6 +10,7 @@ import {
 
 var product = new Product;
 var cart = new Cart;
+var app = getApp();
 Page({
 
   /**
@@ -20,7 +21,11 @@ Page({
     countsArray: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     productCount: 1,
     tabs_text: ['商品详情', '产品参数', '售后保障'],
-    currentTabsIndex: 0
+    currentTabsIndex: 0,
+    totalPrice: 0.00,
+    eachPrice: 0,
+    kucun:0,
+    cartTotalCounts:0
   },
 
   /**
@@ -30,13 +35,19 @@ Page({
     var id = options.id;
     this.data.id = id;
     this._loadData();
+    wx.setNavigationBarTitle({
+      title: app.globalData.web_title,
+    })
   },
 
   _loadData: function() {
     product.getDetailInfo(this.data.id, (res) => {
       this.setData({
         'cartTotalCounts': cart.getCartTotalCount(),
-        'product': res
+        'product': res,
+        'totalPrice':res.price,
+        'eachPrice':res.price,
+        'kucun':res.stock
       });
     });
   },
@@ -81,6 +92,36 @@ Page({
     wx.switchTab({
       url: '/pages/cart/cart',
     });
-  }
+  },
+
+  addCount:function(e){
+    var count = this.data.productCount+1;
+    if(count > this.data.kucun){
+      wx.showToast({
+          title: '库存只有'+this.data.kucun+'个',
+          icon: 'none',
+          duration: 2000
+      })
+      return false;
+    }
+    var eachPrice = this.data.eachPrice;
+    var totalPrice = count*eachPrice;
+    this.setData({
+      productCount:count,
+      totalPrice:totalPrice
+    })
+  },
+  jianCount:function(e){
+    if(this.data.productCount == 1){
+      return false;
+    }
+    var count = this.data.productCount-1;
+    var eachPrice = this.data.eachPrice;
+    var totalPrice = count*eachPrice;
+    this.setData({
+      productCount:count,
+      totalPrice:totalPrice
+    })
+  },
 
 })

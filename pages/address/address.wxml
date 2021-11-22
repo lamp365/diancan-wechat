@@ -1,0 +1,33 @@
+<view class="no-content" wx:if="{{areaList.length==0}}">
+    <view class="imgbox">
+      <image style="width:200rpx;" src="/images/none.png" mode="widthFix" />
+    </view>
+    <view>暂无地址信息</view>
+  </view>
+<view class="address-item" wx:for="{{areaList}}" wx:for-index="index" wx:for-item="item" wx:key="*this">
+  <view>
+    <text class="address-item-name">{{item.name}}</text>
+    <text class="address-item-phone">{{item.phone}}</text>
+  </view>
+  <view class="address-item-address">{{item.province}}{{item.city}}{{item.county}}{{item.detailInfo}}</view>
+  <view class="address-item-menu">
+    <view class="address-item-left">
+    <block wx:if="{{item.isDefault}}">
+        <text style="color:#1AAD16;">默认</text>
+    </block>
+    <block wx:else>
+        <button class="none-btn btn-default" data-id="{{item.id}}" bindtap="setAddressDefault">设为默认</button>
+    </block>     
+    </view>
+    <view class="address-item-right">
+      <button class="none-btn btn-edit" data-id="{{item.id}}" bindtap="gotoAddressinfo">编辑</button>
+      <button class="none-btn btn-del">删除</button>
+    </view>
+  </view>
+</view>
+<view class="button-group">
+    <button style="background-color: red;" data-id="add" bindtap="gotoAddressinfo">
+      <my-icon type="jiahao" size="35"/> 新建地址</button>
+  <button bindtap="wxAddress">
+    <my-icon type="weixin" size="35"/> 微信添加</button>
+</view>

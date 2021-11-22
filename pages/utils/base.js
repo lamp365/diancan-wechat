@@ -30,9 +30,10 @@ class Base {
         'token': wx.getStorageSync('token')
       },
       success: function(res) {
+    
         var code = res.statusCode.toString();
         var starChar = code.charAt(0);
-
+     
         if (starChar == '2') {
           //普通方法
           /*if(params.sCallback){
@@ -69,6 +70,33 @@ class Base {
   //获得元素上绑定的值
   getDataSet(event, key) {
     return event.currentTarget.dataset[key];
+  }
+
+    /**网络异常*/
+    _showMessageToast(title='网络异常'){
+      wx.showToast({
+          title: title,
+          icon: 'none',
+          duration: 2000
+      })
+  }
+
+  /*
+  * 提示窗口
+  * params:
+  * title - {string}标题
+  * content - {string}内容
+  * flag - {bool}是否跳转到 "我的页面"
+  */
+ showTipsLog(title,content,flag){
+      wx.showModal({
+          title: title,
+          content: content,
+          showCancel:false,
+          success: function(res) {
+              
+          }
+      });
   }
 }
 

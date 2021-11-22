@@ -4,11 +4,11 @@
   <view class="order-basic-info" wx:if="{{basicInfo}}">
     <view class="order-time-no">
       <view>
-        <text class="key">下单时间:</text>
+        <text class="key">下单时间：</text>
         <text class="val">{{basicInfo.orderTime}}</text>
       </view>
       <view>
-        <text class="key">订单编号:</text>
+        <text class="key">订单编号：</text>
         <text class="order-no-txt val">{{basicInfo.orderNo}}</text>
       </view>
     </view>
@@ -20,9 +20,9 @@
   </view>
 
   <!--地址-->
-  <view class="order-address-info {{orderStatus!=0?'disabled':''}}" ontap="editAddress" wx:if="{{selectAddressStatus == 1}}">
-    <block wx:if="{{addressInfo}}">
-      <view class="contact-box">
+  <view class="order-address-info {{orderStatus!=0?'disabled':''}}"  wx:if="{{selectAddressStatus == 1}}">
+    <block wx:if="{{!isNoAddressData}}">
+      <view class="contact-box" ontap="editAddress">
         <view>
           <view class="contact">
             <view>
@@ -42,7 +42,7 @@
       </view>
     </block>
     <block wx:else>
-      <view class="add-new-address">
+      <view class="add-new-address"  ontap="editAddress">
         <text class="icon">+</text>
         <text>添加地址</text>
       </view>
@@ -61,11 +61,11 @@
 
         <view class="item-middle">
           <view>{{item.name}}</view>
-          <view>￥{{item.price}}</view>
+          <view>￥{{item.price}}/件  共{{item.counts}}件</view>
         </view>
 
         <view class="item-right">
-          ×{{item.counts}}
+          ￥{{item.price}}
         </view>
 
       </view>
@@ -95,11 +95,11 @@
     <!--因为屏蔽了支付系统，故第一次支付会不成功，但会生成订单，第二次付款支付不了-->
     <!--订单状态为未付款，从购物车来的请求，第一次支付，满足这些才可以第一次生成订单     -->
     <view wx:if="{{orderStatus<=1 && fromUrl == 'cart' && firstPayStatus ==1 }}" class="pay {{firstPayStatus !=1 ?'disabled':''}}" ontap="pay">
-      去付款
+      立即付款
     </view>
     
     <view wx:else class="pay {{true?'disabled':''}}">
-      去付款
+      立即付款
     </view>
   </view>
 </view>

@@ -4,7 +4,7 @@ import {
 } from 'cart-model.js';
 
 var cart = new Cart();
-
+var app = getApp();
 Page({
 
   /**
@@ -18,7 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    wx.setNavigationBarTitle({
+      title: app.globalData.web_title
+    })
   },
 
   /**

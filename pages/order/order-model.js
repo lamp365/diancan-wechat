@@ -79,12 +79,13 @@ class Order extends Base {
   }
 
   //获得所有历史订单信息，从1开始
-  getOrders(pageIndex, callback) {
+  getOrders(pageIndex, status,callback) {
     var that = this;
     var allParams = {
       url: 'order/by_user',
       data: {
-        page: pageIndex
+        page: pageIndex,
+        status:status
       },
       type: 'get',
       sCallback: function(data) {

@@ -1,14 +1,17 @@
 {
   "pages": [
-    "pages/category/category",
+
+    "pages/food/food",
     "pages/product/product",
     "pages/cart/cart",
     "pages/my/my",
     "pages/order/order",
-    "pages/pay-result/pay-result"
+    "pages/pay-result/pay-result",
+    "pages/addressList/adressList",
+    "pages/myAddress/myAddress",
+    "pages/address/address"
   ],
   "window": {
-    "navigationBarTitleText": "米店",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#f68e35",
     "backgroundColor": "#FFFFFF",
@@ -18,10 +21,10 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/category/category",
+        "pagePath": "pages/food/food",
         "iconPath": "imgs/toolbar/category.png",
         "selectedIconPath": "imgs/toolbar/category@selected.png",
-        "text": "分类"
+        "text": "点餐"
       },
       {
         "pagePath": "pages/cart/cart",

@@ -25,7 +25,8 @@ Page({
   data: {
     pageIndex: 1,
     orderArr: [],
-    isLoadedAll: false
+    isLoadedAll: false,
+    status:0
   },
 
   /**
@@ -33,7 +34,6 @@ Page({
    */
   onLoad: function(options) {
     this._loadData();
-    this._getAddressInfo();
   },
 
   onShow: function() {
@@ -54,19 +54,9 @@ Page({
       order.execSetStorageSync(false);
     });
   },
-  //获取地址信息
-  _getAddressInfo: function() {
-    address.getAddress((addressInfo) => {
-      this._bindAddressInfo(addressInfo);
-    });
-  },
 
-  //绑定地址信息
-  _bindAddressInfo: function(addressInfo) {
-    this.setData({
-      addressInfo: addressInfo
-    });
-  },
+
+
 
   //初始化
   _loadData: function() {
@@ -83,7 +73,7 @@ Page({
   },
 
   _getOrders: function(callback) {
-    order.getOrders(this.data.pageIndex, (res) => {
+    order.getOrders(this.data.pageIndex, this.data.status,(res) => {
       var data = res.data;
       if (data.length) {
         this.data.orderArr.push.apply(this.data.orderArr, data);
@@ -91,15 +81,21 @@ Page({
           orderArr: this.data.orderArr
         });
       } else {
-        this.data.isLoadedAll = true;
+        this.setData({isLoadedAll:true})
       }
       callback && callback();
     });
   },
 
+  getOrderItem:function(e){
+    var status = e.currentTarget.dataset.status;
+    this.setData({status:status,orderArr:[],isLoadedAll:false,pageIndex:1});
+    this._getOrders();
+  },
   onReachBottom: function() {
     if (!this.data.isLoadedAll) {
-      this.data.pageIndex++;
+      var newPage = this.data.pageIndex+1;
+      this.setData({pageIndex:newPage});
       this._getOrders();
     }
   },
@@ -116,8 +112,8 @@ Page({
   rePay: function(event) {
     var id = order.getDataSet(event, 'id'),
       index = order.getDataSet(event, 'index');
-    //this._execPay(id, index);
-    this.showTips('支付提示', '本产品仅用于演示，支付系统已屏蔽');
+    this._execPay(id, index);
+    // this.showTips('支付提示', '本产品仅用于演示，支付系统已屏蔽');
   },
 
   _execPay: function(id, index) {
@@ -144,26 +140,12 @@ Page({
     });
   },
 
-  editAddress: function (event) {
-    var that = this;
-    wx.chooseAddress({
-      success: function (res) {
-        var addressInfo = {
-          name: res.userName,
-          mobile: res.telNumber,
-          totalDetail: address.setAddressInfo(res)
-        }
-        that._bindAddressInfo(addressInfo);
-
-        //保存地址（保存到数据库中）
-        address.submitAddress(res, (flag) => {
-          if (!flag) {
-            that.showTips('操作提示', '地址信息更新失败', true);
-          }
-        });
-      }
+  addressList:function(){
+    wx.navigateTo({
+      url: '../addressList/adressList',
     })
   },
+
 
   /*
    *提示窗口

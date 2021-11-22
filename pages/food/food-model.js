@@ -21,11 +21,15 @@ class Category extends Base {
 
   //获得某种分类的商品
   getProductsByCategory(id, Callback) {
+    var that = this;
     var params = {
       url: 'product/by_category?id=' + id,
       method: 'GET',
       sCallback: function(res) {
         Callback && Callback(res);
+      },
+      eCallback:function(res){
+        Callback && Callback(0);
       }
     }
     this.request(params);

@@ -1,14 +1,19 @@
 <template name="categorydetail">
   <view class="category-detail-box" hidden="{{!categoryInfo}}">
 
-    <view class="category-header">
-      <image src="{{categoryInfo.topImgUrl}}" mode="aspectFill"></image>
+    <view class="product_list"  wx:for="{{categoryInfo.products}}" wx:key="index">
+      <image src="{{item.main_img_url}}" class="product_img" mode='aspectFill'></image>
+      <view class="product_content">
+        <view>{{item.name}}</view>
+        <view>月销量 5</view>
+        <view class="product_buy">
+            <view>14yuan</view>
+            <view>购买</view>
+        </view>
+      </view>
     </view>
-
-    <view class="category-title">
-      <text>{{categoryInfo.title}}</text>
-    </view>
-
+   
+    
     <view class="category-main">
       <block wx:for="{{categoryInfo.products}}" wx:key="index">
 

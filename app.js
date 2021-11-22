@@ -13,9 +13,6 @@ App({
     var token = new Token();
     var that = this;
     token._getSystemInfo(res=>{
-      wx.setNavigationBarTitle({
-        title: res.data.title
-      })
       that.globalData.web_title = res.data.title;
     });
     token.verify();

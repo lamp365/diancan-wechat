@@ -23,6 +23,8 @@
     display: flex;
     font-size: 32rpx;
     padding: 34rpx 20rpx 24rpx 20rpx;
+    background-color: #fff;
+    width: 100%;
 }
 .top_nav .active{
     font-weight: bolder;
@@ -69,18 +71,23 @@
     white-space: nowrap;
     overflow: hidden;
 }
-
 .topnavFixed{
-    position:fixed;
+    position: fixed;
     top:0rpx;
+    left: 0rpx;
     z-index: 101;
 }
 .topnavAbsolute{
-    position:absolute;
-    top:700rpx;
+    position: fixed;
+    top:304rpx;
     z-index: 100;
 }
-
+.topcatFixed{ 
+    position: fixed;
+    top:105rpx;
+    z-index: 100;
+    /* padding-top:155rpx; */
+}
 
 .category-container{
     /*min-height: 100vh;*/
@@ -92,6 +99,7 @@
 .left-box{
     flex: 0 0 150rpx;
     border-right:1rpx solid #D8D8D8;
+    width: 150rpx;
 }
 .menu-item{
     height: 50rpx;

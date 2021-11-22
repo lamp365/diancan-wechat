@@ -5,7 +5,7 @@ import {
 } from 'food-model.js';
 
 var category = new Category;
-
+var app = getApp();
 Page({
 
   /**
@@ -17,7 +17,9 @@ Page({
     currentMenuIndex: 0,
     loadedData: {},
     bannerArr:[],
-    scrollTopNum:0
+    scrollTop:0,
+    scrollTop2:0,
+    clientHight:0
   },
 
   /**
@@ -26,6 +28,7 @@ Page({
   onLoad: function(options) {
     this._loadData();
     this.getBanner();
+    this.getClientHeight();
   },
   getBanner:function(){
     var bannerArr = [
@@ -35,6 +38,16 @@ Page({
       {'image':"../../imgs/baner2.jpg"}
     ];
     this.setData({bannerArr:bannerArr})
+  },
+
+  getClientHeight:function(){
+    var that = this;
+    wx.getSystemInfo({
+      success: (result) => {
+        var screeHight = wx.getSystemInfoSync().windowHeight;//获取屏幕高度
+        that.setData({clientHight:screeHight});
+      },
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -113,11 +126,24 @@ Page({
       });
     }
   },
-
+  onShow:function(){
+    setTimeout(function(){
+      wx.setNavigationBarTitle({
+        title: app.globalData.web_title
+      })
+    },1000)
+  
+  },
   onPageScroll: function (e) {//监听页面滚动
     console.log(e);
     this.setData({
       scrollTop: e.scrollTop
     })
   },
+  bindscrollView:function(e){
+    console.log(e.detail);
+    this.setData({
+      scrollTop2: e.detail.scrollTop
+    })
+  }
 })

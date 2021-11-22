@@ -22,9 +22,11 @@ Page({
     bannerArr:[],
     scrollTop:0,
     scrollTop2:0,
-    gotopNum:0,
+    gotopNum:0,   //控制点击分类自动滑动到顶部
     clientHight:0,
-    is_nodata:false
+    is_nodata:false,  
+    nav_act_content:1, //控制显示 菜品或者商家
+    sysData:'' //系统数据
   },
 
   /**
@@ -153,10 +155,12 @@ Page({
     }
   },
   onShow:function(){
+    var that = this;
     setTimeout(function(){
       wx.setNavigationBarTitle({
         title: app.globalData.web_title
       })
+      that.setData({sysData:app.globalData.sysData})
     },1000)
   
   },
@@ -190,7 +194,10 @@ Page({
     cart.add(tempObj, 1);
     BaseObj._showMessageToast('已加购物车');
   },
-
+  choose_nav:function(e){
+    var nav_act_content = category.getDataSet(e,'act')
+    this.setData({nav_act_content:nav_act_content})
+  },
   onPageScroll: function (e) {//监听页面滚动
     console.log(e);
     this.setData({
@@ -202,5 +209,12 @@ Page({
     this.setData({
       scrollTop2: e.detail.scrollTop
     })
-  }
+  },
+  callMobile:function(){
+    var mobile = app.globalData.sysData.tel;
+    // console.log(mobile);
+    wx.makePhoneCall({
+      phoneNumber: mobile,
+    })
+  },
 })

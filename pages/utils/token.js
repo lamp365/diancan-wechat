@@ -64,7 +64,7 @@ class Token {
   _getSystemInfo(callback){
     var that = this;
     wx.request({
-      url: Config.getSystem,
+      url: Config.restUrl+'getSystem',
       success: function(res) {
         callback(res);
       }

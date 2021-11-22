@@ -140,3 +140,41 @@
 .foods-type-box{
     height: 100vh;
 }
+.shoperInfo{
+    padding: 60rpx 40rpx;
+}
+.shoperInfo .title{
+    font-size: 30rpx;
+    font-weight: bolder;
+    height: 60rpx;
+}
+.shoperInfo .address{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.shoperInfo .address>view:nth-child(1){
+    display: flex;
+    flex: 1;
+    color: #979797;
+    font-size: 28rpx;
+    align-items: center;
+}
+.shoperInfo .address image{
+    width: 60rpx;
+    height: 50rpx;
+    padding-right: 14rpx;
+}
+.shoperInfo .address .info{
+    padding-right: 20rpx;
+}
+.shoperInfo .desc{
+    font-size: 28rpx;
+    color: #979797;
+    padding: 10rpx 0rpx;
+}
+.shianjian text{
+    padding: 4rpx 6rpx;
+    border: 2rpx solid #979797;
+    border-radius: 12rpx;
+}

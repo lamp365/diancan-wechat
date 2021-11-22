@@ -15,11 +15,11 @@
 
 
   <view class="top_nav  {{scrollTop>146 ? 'topnavFixed' : ''}}">
-    <view class="active">菜品</view>
-    <view>商家</view>
+    <view class="{{nav_act_content == 1 ? 'active' : '' }}" bindtap="choose_nav" data-act='1'>菜品</view>
+    <view class="{{nav_act_content == 2 ? 'active' : '' }}" bindtap="choose_nav" data-act='2'>商家</view>
   </view>
 
-<view class="mian-box">
+<view class="mian-box"  wx:if="{{nav_act_content == 1}}">
   <view class="tuijian_box">
       <view class="tuijian_title">商家推荐</view>
       <view class="tuijian_piclist">
@@ -59,6 +59,35 @@
   </view>
   <!-- 分类end -->
 </view>
+<!-- mian box -->
 
 
+
+<view class="shoperInfo" wx:if="{{nav_act_content == 2}}">
+  <view class="title">{{sysData.title}}</view>
+  <view class="address">
+    <view>
+        <image src="../../imgs/icon/address.jpg"></image> 
+        <view class="info">{{sysData.ads}}</view>
+    </view>
+    <view>
+      <image src="../../imgs/icon/mobile2.png" style="width: 58rpx;height:58rpx;" bindtap="callMobile"></image>
+    </view>
+  </view>
+
+  <view class="shoperdesc" style="margin-top: 60rpx;">
+    <view class="title">商家信息</view>
+    <view class="desc">商家品类：{{sysData.des}}</view>
+    <view class="desc">营业时间：10:10-14:00 16:00-20:00</view>
+  </view>
+
+  <view class="shianjian" style="margin-top: 60rpx;">
+    <view class="title">商家服务</view>
+    <view class="desc">
+      <text>食安检</text>
+      该商户已经购买食品安全责任险，食品安全有保障
+    </view>
+  </view>
+  <view class="shianjian" style="margin-top: 60rpx;"></view>
+</view>
 

@@ -14,6 +14,7 @@ App({
     var that = this;
     token._getSystemInfo(res=>{
       that.globalData.web_title = res.data.title;
+      that.globalData.sysData = res.data;
     });
     token.verify();
     
@@ -22,7 +23,8 @@ App({
  
     //使用全局变量解决页面的传值问题  
     globalData: {
-     web_title:'' //用户地址-在使用    
+     web_title:'', //用户地址-在使用
+     sysData:''    
     },
 
   /**

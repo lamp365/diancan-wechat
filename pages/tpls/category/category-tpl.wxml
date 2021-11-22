@@ -16,7 +16,7 @@
     <view class="no_data"  wx:if="{{is_nodata}}" style="justify-content: center;display: flex;">
       <image src="../../imgs/icon/none.jpg" style="margin-top: 160rpx;width: 240rpx;height: 240rpx;"></image>
     </view>
-  </view>
-  
+  </view> 
+   
 
 </template>

@@ -26,7 +26,8 @@ Page({
     clientHight:0,
     is_nodata:false,  
     nav_act_content:1, //控制显示 菜品或者商家
-    sysData:'' //系统数据
+    sysData:'', //系统数据
+    recommendProduct:[]
   },
 
   /**
@@ -162,7 +163,21 @@ Page({
       })
       that.setData({sysData:app.globalData.sysData})
     },1000)
-  
+    
+    //获取推荐
+    this.getRecommendProduct();
+  },
+  getRecommendProduct:function(res){
+    var that = this;
+    var parame ={
+      url:'product/recommend',
+      sCallback:function(res){
+       if(Object.keys(res).length > 0){
+          that.setData({recommendProduct:res})
+       }  
+      }
+    };
+    BaseObj.request(parame);
   },
   stopMaopao:function(){
     console.log(1);

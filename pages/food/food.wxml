@@ -25,10 +25,10 @@
       <view class="tuijian_piclist">
         <scroll-view scroll-x style="height: 100%;" scroll-left="scrollleft">
           <view class="onepic-item">
-            <view class="the_item" wx:for="{{bannerArr}}" wx:key="index">
-              <image src="{{item.image}}" mode="top"></image>
+            <view class="the_item" wx:for="{{recommendProduct}}" wx:key="index" data-id="{{item.id}}" bindtap="onProductsItemTap">
+              <image src="{{item.main_img_url}}" mode="aspectFill"></image>
               <view class="info-item">
-                title123
+                {{item.name}}
               </view>
             </view>
           </view>
@@ -78,7 +78,7 @@
   <view class="shoperdesc" style="margin-top: 60rpx;">
     <view class="title">商家信息</view>
     <view class="desc">商家品类：{{sysData.des}}</view>
-    <view class="desc">营业时间：10:10-14:00 16:00-20:00</view>
+    <view class="desc">营业时间：{{sysData.work_time}}</view>
   </view>
 
   <view class="shianjian" style="margin-top: 60rpx;">

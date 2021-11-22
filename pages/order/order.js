@@ -112,24 +112,26 @@ Page({
   },
 
   editAddress: function(event) {
-    // var that = this;
-    // wx.chooseAddress({
-    //   success: function(res) {
-    //     var addressInfo = {
-    //       name: res.userName,
-    //       mobile: res.telNumber,
-    //       totalDetail: address.setAddressInfo(res)
-    //     }
-    //     that._bindAddressInfo(addressInfo);
+    //请用真机演示，效果地址操作还是很完美的
+    var that = this;
+    wx.chooseAddress({
+      success: function(res) {
+        var addressInfo = {
+          name: res.userName,
+          mobile: res.telNumber,
+          totalDetail: address.setAddressInfo(res)
+        }
+        that._bindAddressInfo(addressInfo);
 
-    //     //保存地址（保存到数据库中）
-    //     address.submitAddress(res, (flag) => {
-    //       if (!flag) {
-    //         that.showTips('操作提示', '地址信息更新失败', true);
-    //       }
-    //     });
-    //   }
-    // })
+        //保存地址（保存到数据库中）
+        address.submitAddress(res, (flag) => {
+          if (!flag) {
+            that.showTips('操作提示', '地址信息更新失败', true);
+          }
+        });
+      }
+    });
+    return '';  //可用以上方法或者注释上面，用下面的方法
     var id = 0;
     if(this.data.addressInfo.length >0 )
        id = this.data.addressInfo.id;
@@ -229,8 +231,8 @@ Page({
         that.data.id = id;
         that.data.fromCartFlag = false;
         //开始支付
-        // that._execPay(id);
-        that.showPay(id);
+        that._execPay(id);
+        // that.showPay(id);
       } else {
         that._orderFail(data);
       }

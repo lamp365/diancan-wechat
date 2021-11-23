@@ -3,7 +3,7 @@
 .index-top-image{
     height: 350rpx;
     width: 100%;
-  
+     
 
 }
 .mall-b-swiper {
@@ -72,10 +72,14 @@
     overflow: hidden;
 }
 .topnavFixed{
-    position: fixed;
+    /* position: fixed;
     top:0rpx;
     left: 0rpx;
-    z-index: 101;
+    z-index: 101; */
+
+    position: sticky;/* 这个是吸顶粘附关键属性 */
+    z-index: 666;
+    top:0rpx;
 }
 .topnavAbsolute{
     position: fixed;
@@ -83,24 +87,28 @@
     z-index: 100;
 }
 .topcatFixed{ 
-    position: fixed;
+    /* position: fixed;
     top:105rpx;
-    z-index: 100;
-    /* padding-top:155rpx; */
+    z-index: 100; */
+    position: sticky;
+    z-index: 662;
 }
-
+.mian-box{
+    height: 100%;
+}
 .category-container{
     /*min-height: 100vh;*/
 }
 .category-box{
     display: flex;
-    height: 100vh;
+    height: 100%;
 }
 .left-box{
     flex: 0 0 150rpx;
     border-right:1rpx solid #D8D8D8;
     width: 150rpx;
     background-color: #fff;
+    height: 100%;
 }
 .menu-item{
     height: 50rpx;
@@ -139,7 +147,7 @@
     transform:translate(0,-500vh);
 }
 .foods-type-box{
-    height: 100vh;
+    height: 100%;
 }
 .shoperInfo{
     padding: 60rpx 40rpx;

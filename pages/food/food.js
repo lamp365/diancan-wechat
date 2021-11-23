@@ -20,14 +20,15 @@ Page({
     currentMenuIndex: 0,
     loadedData: {},
     bannerArr:[],
-    scrollTop:0,
-    scrollTop2:0,
-    gotopNum:0,   //控制点击分类自动滑动到顶部
-    clientHight:0,
+
     is_nodata:false,  
     nav_act_content:1, //控制显示 菜品或者商家
     sysData:'', //系统数据
-    recommendProduct:[]
+    recommendProduct:[],
+
+    bannerHeight:0,
+    navHeight:0,
+    categoryBoxHeight:0
   },
 
   /**
@@ -60,7 +61,9 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function() {
+     
+  },
 
   //判断当前分类下的商品数据是否已经被加载过
   isLoadedData: function(index) {
@@ -116,10 +119,13 @@ Page({
     var index = category.getDataSet(event, 'index');
 
     this.setData({
-      'currentMenuIndex': index,
-      gotopNum:0
+      'currentMenuIndex': index
     });
-
+    //内容回滚顶部
+    var scrollTopUp = this.data.categoryBoxHeight == 0? 355:this.data.categoryBoxHeight;
+    wx.pageScrollTo({
+      scrollTop: scrollTopUp
+    });
 
     if (!this.isLoadedData(index)) {
       //如果没有加载过当前分类的商品数据
@@ -161,11 +167,17 @@ Page({
       wx.setNavigationBarTitle({
         title: app.globalData.web_title
       })
-      that.setData({sysData:app.globalData.sysData})
+      that.setData({sysData:app.globalData.sysData});
+      
     },1000)
-    
+    setTimeout(function(){
+      //获取nav 高度  页面加载完毕需要时间，所以延迟计算
+      that.getNodeInfoById('navHeight');
+      that.getNodeInfoById('categoryBoxHeight');
+    },4000)
     //获取推荐
     this.getRecommendProduct();
+   
   },
   getRecommendProduct:function(res){
     var that = this;
@@ -213,18 +225,33 @@ Page({
     var nav_act_content = category.getDataSet(e,'act')
     this.setData({nav_act_content:nav_act_content})
   },
-  onPageScroll: function (e) {//监听页面滚动
+  onPageScroll: function (e) {//监听页面滚动 
     console.log(e);
     this.setData({
       scrollTop: e.scrollTop
     })
   },
-  bindscrollView:function(e){
-    // console.log(e.detail);
-    this.setData({
-      scrollTop2: e.detail.scrollTop
-    })
+
+
+  // 获取页面节点信息的方法(nodeName 节点id名称)
+  getNodeInfoById(nodeName) {
+    var that = this;
+    const query = this.createSelectorQuery();
+    query.select(`#${nodeName}`).boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec(res => {
+      console.log(res);//有 height top left width等
+      if(nodeName == 'navHeight'){
+        that.setData({navHeight:res[0].height});
+      }
+      if(nodeName == 'categoryBoxHeight'){
+        that.setData({categoryBoxHeight:res[0].top});
+      }
+     
+    });
   },
+
+
   callMobile:function(){
     var mobile = app.globalData.sysData.tel;
     // console.log(mobile);

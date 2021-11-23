@@ -40,13 +40,25 @@ Page({
     this.getClientHeight();
   },
   getBanner:function(){
-    var bannerArr = [
-      {'image':"../../imgs/baner1.jpg"},
-      {'image':"../../imgs/baner2.jpg"},
-      {'image':"../../imgs/baner2.jpg"},
-      {'image':"../../imgs/baner2.jpg"}
-    ];
-    this.setData({bannerArr:bannerArr})
+    var that = this;
+    var parame = {
+      url : 'banner',
+      sCallback:function(res){
+        if(res.length >0 ){
+          that.setData({bannerArr:res})
+        }else{
+          var bannerArr = [
+            {'image':"../../imgs/baner1.jpg"},
+            {'image':"../../imgs/baner2.jpg"}
+          ];
+          that.setData({bannerArr:bannerArr}) 
+        }
+      }
+    };
+    BaseObj.request(parame); 
+
+    
+   
   },
 
   getClientHeight:function(){

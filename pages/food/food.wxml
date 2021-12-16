@@ -5,7 +5,7 @@
   <view class="index-top-image" id="bannerHeight">
       <swiper class="mall-b-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="1000"  indicator-active-color="#F34A51" circular="true" bindchange="">
         <block wx:for="{{bannerArr}}" wx:key="index" >
-            <swiper-item class="banner-item" bindtap="onProductsItemTap" data-link="">
+            <swiper-item class="banner-item" bindtap="" >
                 <image class="item-image" src="{{item.image}}" mode="scaleToFill" style="" />
             </swiper-item>
         </block>

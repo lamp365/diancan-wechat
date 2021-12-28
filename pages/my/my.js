@@ -11,6 +11,7 @@ import {
 import {
   Address
 } from '../../pages/utils/address.js';
+import {Config} from '../../pages/utils/config.js';
 
 var my = new My();
 var address = new Address();
@@ -26,7 +27,9 @@ Page({
     pageIndex: 1,
     orderArr: [],
     isLoadedAll: false,
-    status:0
+    status:0,
+
+    picBaseUrl:Config.picUrl
   },
 
   /**
@@ -135,7 +138,7 @@ Page({
           url: '../pay-result/pay-result?id=' + id + '&flag=' + flag + '&from=my',
         });
       } else {
-        that.showTips('支付失败', '商品已下架或库存不足');
+        that.showTips('支付失败', '该商家不支持收款');
       }
     });
   },

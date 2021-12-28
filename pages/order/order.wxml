@@ -56,7 +56,7 @@
       <view class="product-item">
 
         <view class="item-left">
-          <image src="{{item.main_img_url}}"></image>
+          <image src="{{picBaseUrl}}{{item.main_img_url}}"></image>
         </view>
 
         <view class="item-middle">
@@ -98,7 +98,7 @@
       立即付款
     </view>
     
-    <view wx:else class="pay {{true?'disabled':''}}">
+    <view wx:else class="pay {{true?'disabled':''}}" ontap="pay">
       立即付款
     </view>
   </view>

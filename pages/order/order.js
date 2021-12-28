@@ -11,7 +11,7 @@ import {
 import {
   Address
 } from '../../pages/utils/address.js';
-
+import {Config} from '../../pages/utils/config.js';
 
 var cart = new Cart();
 var address = new Address();
@@ -34,7 +34,9 @@ Page({
     fromUrl: null,
 
     addressInfo:[],
-    isNoAddressData:true
+    isNoAddressData:true,
+
+    picBaseUrl:Config.picUrl
   },
 
   /**
@@ -50,6 +52,9 @@ Page({
     }
     else{
       var id = options.id;
+      this.setData({
+        id: id
+      });
       this._fromOrder(id);
     }
   },
@@ -203,7 +208,8 @@ Page({
       this._firstTimePay();
     } else {
       //不是第一次支付，已经存在订单直接支付
-      this._oneMoresTimePay();
+      // this._oneMoresTimePay();
+      this._execPay(this.data.id);
     }
   },
 
@@ -231,17 +237,19 @@ Page({
         that.data.id = id;
         that.data.fromCartFlag = false;
         //开始支付
-        that._execPay(id);
-        // that.showPay(id);
+        // that._execPay(id);
+        that.showPay(id);
       } else {
         that._orderFail(data);
       }
     });
   },
+
   //开始支付
   _execPay: function(id) {
     var that = this;
     order.execPay(id, (statusCode) => {
+      
       if (statusCode != 0) {
         //将已经下单的商品从购物车里删除
         that.deleteProducts();
@@ -250,6 +258,15 @@ Page({
         wx.navigateTo({
           url: '../pay-result/pay-result?id=' + id + '&flag=' + flag + '&from=order'
         });
+      }else{
+        wx.showModal({
+          title: '支付失败',
+          content: '该商家不支持收款',
+          showCancel: false,
+          success: function(res) {
+    
+          }
+        })
       }
     });
   },
